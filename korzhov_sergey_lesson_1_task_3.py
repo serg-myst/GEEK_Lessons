@@ -1,8 +1,8 @@
 
-percent = int(input('Введите процент: '))
+percent = int(input('Введите процент:'))
 
 str_percent = 'процент'
-
+#список исключений
 mas_excep = (1,2,3,4)
 
 if percent >= 20:
@@ -17,6 +17,7 @@ else:
     print('{} {}'.format(percent,str_percent))
 
     #Выведем все склонения до 20
+    #Продублируем код, т.к. функции не проходили
     print('================Проверка================')
     for percent in range(20):
         str_percent = 'процент'
