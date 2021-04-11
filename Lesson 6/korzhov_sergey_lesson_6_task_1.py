@@ -6,7 +6,7 @@ def read_line(f):
         yield line.replace('"','').split()
 
 
-def get_date():
+def get_data():
 
     server_answer = requests.get('https://github.com/elastic/examples/raw/master/Common%20Data%20Formats/nginx_logs/nginx_logs')
 
@@ -20,7 +20,7 @@ def get_date():
         f.writelines(answer_text)
 
 
-get_date()
+get_data()
 
 log = []
 with open('nginx_logs.txt','r',encoding='utf-8') as f:

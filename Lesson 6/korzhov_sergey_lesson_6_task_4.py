@@ -1,26 +1,30 @@
 import itertools
 
 
-def write_file(users_list, hobby_list):
+def write_file(users_list, hobby_list, fw):
     if len(users_list) < len(hobby_list):  # По ТЗ должны выдать ошибку
         raise ValueError('Ошибка формирования')
     else:
-        with open('users_hobby.txt', 'w', encoding='utf-8') as wf:
-            for user_name, user_hobby in itertools.zip_longest(users_list, hobby_list, fillvalue=None):
-                wf.write(f'{user_name}: {user_hobby}\n')
+        for user, hobby in itertools.zip_longest(users_list, hobby_list, fillvalue=None):
+            fw.write(f'{user}: {hobby}\n')
 
 
-def get_date(file_name):
-    date_list = []
-    with open(file_name, 'r', encoding='utf-8') as fr:
-        lines = (el for el in fr.readlines())
+def get_data(f):
+    data_list = []
+    with open(f, 'r', encoding='utf-8') as f:
+        lines = (el for el in f.readlines())
         for line in lines:
-            date_list.append(line)
-        date_list = list(map(lambda el: el.replace('\n', ''), date_list))
+            data_list.append(line)
+        data_list = list(map(lambda el: el.replace('\n', ''), data_list))
 
-        return date_list
+        return data_list
 
 
-users = get_date('users.csv')
-hobby = get_date('hobby.csv')
-write_file(users, hobby)
+def read_files(file_users, file_hobby, file_result):
+    users_list = get_data(file_users)
+    hobby_list = get_data(file_hobby)
+    with open(file_result, 'w', encoding='utf-8') as wf:
+        write_file(users_list, hobby_list, wf)
+
+
+read_files('users.csv', 'hobby.csv', 'users_hobby.txt')

@@ -10,20 +10,20 @@ def write_file(users_list, hobby_list, fw):
             fw.write(f'{user}: {hobby}\n')
 
 
-def get_date(f):
-    date_list = []
+def get_data(f):
+    data_list = []
     with open(f, 'r', encoding='utf-8') as f:
         lines = (el for el in f.readlines())
         for line in lines:
-            date_list.append(line)
-        date_list = list(map(lambda el: el.replace('\n', ''), date_list))
+            data_list.append(line)
+        data_list = list(map(lambda el: el.replace('\n', ''), data_list))
 
-        return date_list
+        return data_list
 
 
 def read_files(file_users, file_hobby, file_result):
-    users_list = get_date(file_users)
-    hobby_list = get_date(file_hobby)
+    users_list = get_data(file_users)
+    hobby_list = get_data(file_hobby)
     with open(file_result, 'w', encoding='utf-8') as wf:
         write_file(users_list, hobby_list, wf)
 
